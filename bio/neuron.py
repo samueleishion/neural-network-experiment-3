@@ -23,9 +23,9 @@ class Neuron:
 	def is_type(self,neuron_type): 
 		return self.type==neuron_type 
 
-	# ========================
+	# ======================== 
 	# bio processes 
-	# ========================
+	# ======================== 
 	def process(self,sensor): 
 		if(sensor>0): 
 			self.lightup() 
@@ -60,9 +60,9 @@ class Neuron:
 	def add_synapse(self,neuron): 
 		self.axon.append(neuron) 
 
-	# ========================
+	# ======================== 
 	# graphic processes 
-	# ========================
+	# ======================== 
 	def draw(self,win,x,y): 
 		point = Point(x,y) 
 		self.body = Circle(point,NEURON_SIZE) 
@@ -70,9 +70,9 @@ class Neuron:
 
 	def lightup(self): 
 		c = NEURON_COLORS[self.type]
-		r = c.red 
-		g = c.green 
-		b = c.blue 
+		r = c["red"] 
+		g = c["green"] 
+		b = c["blue"] 
 		color = color_rgb(r,g,b) 
 		self.body.setFill(color) 
 
