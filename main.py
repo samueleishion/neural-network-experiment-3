@@ -2,6 +2,7 @@ from pkg.graphics import *
 from pkg.utils import * 
 # from bio.neuron import * 
 from bio.organ import * 
+from bio.network import * 
 from settings import * 
 
 def main(): 
@@ -14,12 +15,20 @@ def main():
 	# o.draw(win,WINDOW_X/2,WINDOW_Y/4) 
 
 	# Testing hand 
-	h = Hand(SENSORY_NEURONS) 
-	h.draw(win,WINDOW_X/4,WINDOW_Y/4) 
+	# h = Hand(SENSORY_NEURONS) 
+	# h.draw(win,WINDOW_X/4,WINDOW_Y/4) 
 
 	# Testing eye 
+	# e = Eye(SENSORY_NEURONS) 
+	# e.draw(win,3*WINDOW_X/4,WINDOW_Y/4) 
+
+	# Testing network 
+	n = Network() 
+	h = Hand(SENSORY_NEURONS) 
 	e = Eye(SENSORY_NEURONS) 
-	e.draw(win,3*WINDOW_X/4,WINDOW_Y/4) 
+	n.add_organ(h) 
+	n.add_organ(e) 
+	n.draw(win) 
 
 	win.getMouse() 
 	win.close() 

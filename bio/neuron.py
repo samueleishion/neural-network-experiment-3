@@ -10,7 +10,7 @@ NEURON_COLORS = [ {"red":255,"green":0,"blue":0}, # SENSORIAL NEURON
 				  {"red":0,"green":255,"blue":0} ] # MOTOR NEURON 
 
 class Neuron: 
-	def __init__(self,neuron_type,weight,id_number): 
+	def __init__(self,neuron_type,weight,id_number = 0): 
 		self.type = neuron_type 
 		self.id = id_number 
 		self.th = 0.5 	# threshold 

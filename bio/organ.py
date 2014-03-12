@@ -36,12 +36,17 @@ class Eye(Organ):
 			c = Cone() 
 			self.cones.append(c) 
 
+	def add_synapse(self,neuron): 
+		for cone in self.cones: 
+			cone.add_synapse(neuron) 
+
 # color detectors for eye nerves/neurons 
 class Cone: 
 	def __init__(self): 
 		self.r = Neuron(SENSORIAL,0.5,1) 
 		self.g = Neuron(SENSORIAL,0.5,1) 
 		self.b = Neuron(SENSORIAL,0.5,1) 
+		self.axon = self.r.axon 
 
 	def perceive(self,r,g,b): 
 		self.r.process((r/255)*INTENSITY) 
@@ -52,3 +57,9 @@ class Cone:
 		point = Point(x,y) 
 		self.body = Circle(point,NEURON_SIZE) 
 		self.body.draw(win) 
+
+	def add_synapse(self,neuron): 
+		self.r.add_synapse(neuron) 
+		self.g.add_synapse(neuron) 
+		self.b.add_synapse(neuron) 
+
