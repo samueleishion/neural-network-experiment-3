@@ -30,7 +30,13 @@ def main():
 	n.add_organ(e) 
 	n.draw(win) 
 
-	win.getMouse() 
+	while(True): 
+		if(AUTOMATIC): 
+			print "auto" 
+		else: 
+			click = get_click() 
+			was_click_perceived(n,click[0],click[1]) 
+
 	win.close() 
 
 main()

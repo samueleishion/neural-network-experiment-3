@@ -20,24 +20,24 @@ class Network:
 			n = create_neuron(TRANSMITTER) 
 			temp.append(n) 
 
-		# connecting orgam sensorial neurons with transmitters 
+		# connecting organ's sensorial neurons with transmitters 
 		for neuron in organ.neurons: 
 			for synapse in temp: 
-				rand = random.randint(0,2) 
+				rand = random.randint(0,5) 
 				if(rand==0): 
 					neuron.add_synapse(synapse) 
 
 		# connecting transmitters with other transmitters  
 		for neuron in temp: 
 			for other in temp: 
-				rand = random.randint(0,50) if neuron==other else random.randint(0,5) 
+				rand = random.randint(0,40) if neuron==other else random.randint(0,100) 
 				if(rand==0): 
 					neuron.add_synapse(other) 
 
 		# conencting transmitters with terminals 
 		for neuron in temp: 
 			for terminal in self.terminals: 
-				rand = random.randint(0,4) 
+				rand = random.randint(0,5) 
 				if(rand==0): 
 					neuron.add_synapse(terminal) 
 

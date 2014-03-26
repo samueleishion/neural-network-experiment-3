@@ -1,12 +1,14 @@
 from pkg.utils import * 
 from bio.neuron import * 
 from settings import * 
+import random 
 
 class Organ: 
 	def __init__(self,neuron_number): 
 		self.neurons = []
 		for i in range(neuron_number):
-			n = Neuron(0,0.5,1)
+			rand = random.uniform(0.25,0.75) 
+			n = Neuron(SENSORIAL,rand,1)
 			self.neurons.append(n) 
 
 	def draw(self,win,x,y): 
@@ -43,9 +45,10 @@ class Eye(Organ):
 # color detectors for eye nerves/neurons 
 class Cone: 
 	def __init__(self): 
-		self.r = Neuron(SENSORIAL,0.5,1) 
-		self.g = Neuron(SENSORIAL,0.5,1) 
-		self.b = Neuron(SENSORIAL,0.5,1) 
+		rand = random.uniform(0.25,0.75)
+		self.r = Neuron(SENSORIAL,rand,1) 
+		self.g = Neuron(SENSORIAL,rand,1) 
+		self.b = Neuron(SENSORIAL,rand,1) 
 		self.axon = self.r.axon 
 
 	def perceive(self,r,g,b): 
@@ -55,6 +58,8 @@ class Cone:
 
 	def draw(self,win,x,y): 
 		point = Point(x,y) 
+		self.x = x 
+		self.y = y
 		self.body = Circle(point,NEURON_SIZE) 
 		self.body.draw(win) 
 
@@ -63,3 +68,13 @@ class Cone:
 		self.g.add_synapse(neuron) 
 		self.b.add_synapse(neuron) 
 
+	def get_coords(self): 
+		return self.x,self.y# self.r.get_coords() 
+
+	def is_type(self,neuron_type): 
+		return self.r.type==neuron_type 
+
+	def process(self,sensor): 
+		self.r.process(sensor) 
+		self.g.process(sensor) 
+		self.b.process(sensor) 

@@ -2,6 +2,7 @@
 # 	http://end.wikipedia.org/wiki/Artificial_neuron#Spreadsheet_example 
 
 from pkg.graphics import * 
+from pkg.utils import * 
 from settings import * 
 
 NEURON_COLORS = [ {"red":255,"green":0,"blue":0}, # SENSORIAL NEURON 
@@ -19,6 +20,9 @@ class Neuron:
 		self.axon = [] # connection to other neurons 
 		self.sub = 0 	# subtotal value of sensor and weight 
 		self.hits = 0 
+		self.body = Circle(Point(0,0),NEURON_SIZE) 
+		self.x = 0 
+		self.y = 0 
 
 	def is_type(self,neuron_type): 
 		return self.type==neuron_type 
@@ -30,11 +34,14 @@ class Neuron:
 		if(sensor>0): 
 			self.lightup() 
 			
-			if(self.is_type(TERMINAL)): 
+			# @TODO change 2 to TERMINAL 
+			if(self.is_type(2)): 
 				self.hits += 1 
 			else: 
 				expected = 1 if bool(sensor) else 0 # desired output 
-				self.sub += sensor*self.weight # accumulated value 
+				self.sub += sensor*self.w # accumulated value 
+				error = expected 
+				out = 0 
 
 				# determine whether there's a value to send 
 				while(self.sub>self.th): 
@@ -42,7 +49,7 @@ class Neuron:
 					self.sub -= self.th 
 					error = expected-out 
 					self.learn(error) 
-					self.send() 
+					self.send(out) 
 
 				self.learn(error) 
 				self.send(out) 
@@ -51,7 +58,7 @@ class Neuron:
 
 	def learn(self,error): 
 		correction = self.lr if (error==1) else -self.lr/2 
-		self.weight += correction # corret weight value based on error 
+		self.w += correction # corret weight value based on error 
 
 	def send(self,out): 
 		for synapse in self.axon: 
@@ -64,6 +71,8 @@ class Neuron:
 	# graphic processes 
 	# ======================== 
 	def draw(self,win,x,y): 
+		self.x = x 
+		self.y = y 
 		point = Point(x,y) 
 		self.body = Circle(point,NEURON_SIZE) 
 		self.body.draw(win) 
@@ -80,3 +89,5 @@ class Neuron:
 		color = color_rgb(255,255,255) 
 		self.body.setFill(color) 
 
+	def get_coords(self): 
+		return self.x, self.y 
