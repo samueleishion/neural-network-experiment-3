@@ -30,14 +30,18 @@ class Network:
 		# connecting transmitters with other transmitters  
 		for neuron in temp: 
 			for other in temp: 
-				rand = random.randint(0,40) if neuron==other else random.randint(0,100) 
+				#rand = random.randint(0,40) if neuron==other else random.randint(0,100) 
+				if(neuron==other): 
+					continue 
+				else: 
+					rand = random.randint(0,50) 
 				if(rand==0): 
 					neuron.add_synapse(other) 
 
 		# conencting transmitters with terminals 
 		for neuron in temp: 
 			for terminal in self.terminals: 
-				rand = random.randint(0,5) 
+				rand = random.randint(0,7) 
 				if(rand==0): 
 					neuron.add_synapse(terminal) 
 

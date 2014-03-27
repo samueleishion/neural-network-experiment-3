@@ -4,5 +4,5 @@ NEURON_SIZE = 10 		# Sets radius of each neuron
 SENSORY_NEURONS = 10 	# Number of sensory neurons per sensory organ 
 TERMINAL_NEURONS = 10 	# Number of terminal neurons 
 INTENSITY = 1			# Intensity value to increase learning process 
-AUTOMATIC = False		# Automatic vs interactive mode 
+AUTOMATIC = True		# Automatic vs interactive mode 
 GRAPH = True   			# Show distribution graph of connections 

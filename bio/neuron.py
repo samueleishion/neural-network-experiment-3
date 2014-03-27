@@ -51,8 +51,8 @@ class Neuron:
 					self.learn(error) 
 					self.send(out) 
 
-				self.learn(error) 
-				self.send(out) 
+				self.learn(expected) 
+				#self.send(out) 
 			
 			self.lightdown() 
 

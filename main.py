@@ -32,7 +32,9 @@ def main():
 
 	while(True): 
 		if(AUTOMATIC): 
-			print "auto" 
+			for organ in n.organs: 
+				for neuron in organ.neurons: 
+					neuron.send(INTENSITY) 
 		else: 
 			click = get_click() 
 			was_click_perceived(n,click[0],click[1]) 
