@@ -1,4 +1,5 @@
 from pkg.graphics import * 
+from pkg.consts import * 
 from pkg.utils import * 
 # from bio.neuron import * 
 from bio.organ import * 
@@ -35,6 +36,13 @@ def main():
 			for organ in n.organs: 
 				for neuron in organ.neurons: 
 					neuron.send(INTENSITY) 
+					# if(isinstance(neuron, Cone)): 
+					# 	r = random.randint(0,INTENSITY) 
+					# 	g = random.randint(0,INTENSITY) 
+					# 	b = random.randint(0,INTENSITY) 
+					# 	neuron.send(r,g,b) 
+					# else: 
+					# 	neuron.send(INTENSITY) 
 		else: 
 			click = get_click() 
 			was_click_perceived(n,click[0],click[1]) 

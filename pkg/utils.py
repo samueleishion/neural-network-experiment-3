@@ -1,14 +1,8 @@
 from settings import * 
+from consts import * 
 from graphics import * 
 from bio.neuron import * 
 import random 
-
-SENSORIAL 	= 0
-TRANSMITTER = 1 
-TERMINAL 	= 2 
-MOTOR 		= 3 
-
-win = GraphWin("Neural Network Graph",WINDOW_X,WINDOW_Y) 
 
 def flip(n):
 	return 1 if n==0 else 0 
@@ -41,10 +35,6 @@ def was_click_perceived(network,x,y):
 					neuron.process(INTENSITY) 
 					print "found" 
 					return True 
-			# else:
-			# 	if(i==1):
-			# 		print str(x)+" e ["+str(nx-nr)+","+str(nx+nr)+"] ", 
-			# 		print str(y)+" e ["+str(ny-nr)+","+str(ny+nr)+"]"
 		i += 1 
 
 	print "not found"
