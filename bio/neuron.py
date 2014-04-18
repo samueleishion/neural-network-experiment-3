@@ -50,6 +50,8 @@ class Neuron(object):
 					out = 1 
 					self.sub -= self.th 
 					error = expected-out 
+					#if self.learn(error)==-1: 
+					#	return -1
 					self.learn(error) 
 					# sleep(0.05) 
 					self.send(out) 
@@ -59,7 +61,11 @@ class Neuron(object):
 
 	def learn(self,error): 
 		correction = self.lr if (error==1) else -self.lr/2 
-		self.w += correction # corret weight value based on error 
+		self.w += correction # correct weight value based on error 
+		if(self.w<=0.09):
+			print self.w 
+			return -1 
+		return 0 
 
 	def send(self,out): 
 		self.lightup() 
@@ -111,13 +117,13 @@ class Cone(Neuron):
 
 	def lightup(self): 
 		if self.color_type==RED: 
-			color = color_rgb(200,150,150) 
+			color = color_rgb(220,100,100) 
 		elif self.color_type==GRN: 
-			color = color_rgb(150,200,150) 
+			color = color_rgb(100,220,100) 
 		elif self.color_type==BLU: 
-			color = color_rgb(150,150,200) 
+			color = color_rgb(100,100,220) 
 		else: 
-			color = color_rgb(150,150,100) 
+			color = color_rgb(220,220,100) 
 		self.body.setFill(color) 
 
 	def draw(self,win,x,y): 

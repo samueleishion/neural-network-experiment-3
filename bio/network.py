@@ -2,6 +2,7 @@ from settings import *
 from pkg.utils import * 
 from bio.network import * 
 from bio.neuron import * 
+from bio.organ import * 
 import random 
 
 class Network: 
@@ -56,7 +57,10 @@ class Network:
 		# drawing organs 
 		i = 0 
 		for organ in self.organs: 
-			x = (organs_space*i)+(organs_space/4) 
+			if isinstance(organ,Eye):
+				x = (organs_space*i)-(organs_space/8)
+			else:
+				x = (organs_space*i)+(organs_space/4) 
 			y = 50 
 			organ.draw(win,x,y) 
 			i += 1 
@@ -66,7 +70,7 @@ class Network:
 		for transmitter in self.transmitters: 
 			for neuron in transmitter: 
 				x = ((organs_space*i)+50)+random.randint(0,organs_space-150) 
-				y = 150+random.randint(0,WINDOW_Y-300) 
+				y = 150+random.randint(0,WINDOW_Y-500) 
 				neuron.draw(win,x,y) 
 			i += 1
 
@@ -74,7 +78,7 @@ class Network:
 		i = 0 
 		for terminal in self.terminals: 
 			x = (WINDOW_X/2)-(len(self.terminals)*(NEURON_SIZE*1.5))+(((NEURON_SIZE*2)+5)*i) 
-			y = WINDOW_Y-50 
+			y = WINDOW_Y-250 
 			terminal.draw(win,x,y) 
 			i += 1 
 

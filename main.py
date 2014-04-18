@@ -1,6 +1,7 @@
 from pkg.graphics import * 
 from pkg.consts import * 
 from pkg.utils import * 
+from data.report import * 
 # from bio.neuron import * 
 from bio.organ import * 
 from bio.network import * 
@@ -26,10 +27,16 @@ def main():
 	# Testing network 
 	n = Network() 
 	h = Hand(SENSORY_NEURONS) 
+	l = Hand(SENSORY_NEURONS)
 	e = Eye(SENSORY_NEURONS) 
+	r = Report(n) 
 	n.add_organ(h) 
 	n.add_organ(e) 
+	n.add_organ(l) 
 	n.draw(win) 
+
+	if(GRAPH): 
+		r.draw(win) 
 
 	while(True): 
 		if(AUTOMATIC): 

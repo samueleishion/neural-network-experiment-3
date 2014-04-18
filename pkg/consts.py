@@ -10,4 +10,8 @@ RED 	= 0
 GRN 	= 1
 BLU 	= 2 
 
+WINDOW_X = 1000 		# Sets window horizontal dimension 
+WINDOW_Y = 700 			# Sets window vertical dimension 
+NEURON_SIZE = 10 		# Sets radius of each neuron 
+
 win = GraphWin("Neural Network Graph",WINDOW_X,WINDOW_Y) 
