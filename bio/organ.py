@@ -4,7 +4,8 @@ from settings import *
 import random 
 
 class Organ: 
-	def __init__(self,neuron_number): 
+	def __init__(self,neuron_number,organ_id): 
+		self.id = organ_id 
 		self.neurons = []
 		for i in range(neuron_number):
 			rand = random.uniform(0.25,0.75) 
@@ -31,7 +32,8 @@ class Hand(Organ):
 		return 0 
 
 class Eye(Organ): 
-	def __init__(self,neuron_number): 
+	def __init__(self,neuron_number,organ_id): 
+		self.id = organ_id 
 		self.neurons = []
 		for i in range(neuron_number): 
 			rand = random.uniform(0.25,0.75) 

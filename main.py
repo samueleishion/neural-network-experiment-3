@@ -26,16 +26,16 @@ def main():
 
 	# Testing network 
 	n = Network() 
-	h = Hand(SENSORY_NEURONS) 
-	l = Hand(SENSORY_NEURONS)
-	e = Eye(SENSORY_NEURONS) 
-	r = Report(n) 
+	h = Hand(SENSORY_NEURONS,1) 
+	l = Hand(SENSORY_NEURONS,2)
+	e = Eye(SENSORY_NEURONS,3) 
 	n.add_organ(h) 
 	n.add_organ(e) 
 	n.add_organ(l) 
 	n.draw(win) 
 
 	if(GRAPH): 
+		r = Report(n) 
 		r.draw(win) 
 
 	while(True): 
