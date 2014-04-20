@@ -25,7 +25,7 @@ class Report:
 		r.draw(win) 
 
 		space = WINDOW_X*1.0
-		x_offset = 30 
+		x_offset = 50 
 		for graph in self.graphs: 
 			graph.draw(win,x_offset,WINDOW_Y-200,190/SENSORY_NEURONS) 
 			x_offset += space/3

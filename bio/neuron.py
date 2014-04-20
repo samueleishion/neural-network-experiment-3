@@ -73,12 +73,14 @@ class Neuron(object):
 	def send(self,out): 
 		self.lightup() 
 		for synapse in self.axon: 
+			synapse.lightup() 
 			if(synapse.neuron_to.process(out)==ERROR): 
 				synapse.erase() 
 				if(synapse in self.axon): 
 					self.axon.remove(synapse) 
 			else: 
 				synapse.reset() 
+			synapse.lightdown() 
 		self.lightdown() 
 
 	def add_synapse(self,neuron): 
@@ -122,11 +124,13 @@ class Cone(Neuron):
 		factor = 1.0/3.0
 		self.lightup() 
 		for synapse in self.axon: 
+			synapse.lightup() 
 			if(synapse.neuron_to.process(out*factor)==ERROR): 
 				synapse.erase() 
 				self.axon.remove(synapse) 
 			else: 
 				synapse.reset() 
+			synapse.lightdown() 
 		self.lightdown() 
 
 	def lightup(self): 
