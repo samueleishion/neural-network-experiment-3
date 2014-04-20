@@ -33,7 +33,6 @@ class Network:
 		# connecting transmitters with other transmitters  
 		for neuron in temp: 
 			for other in temp: 
-				#rand = random.randint(0,40) if neuron==other else random.randint(0,100) 
 				if(neuron==other): 
 					continue 
 				else: 
@@ -85,30 +84,15 @@ class Network:
 			i += 1 
 
 		# drawing connections between organs' sensory neurons and transmitters 
-		i = 0
 		for organ in self.organs: 
 			for neuron in organ.neurons: 
 				for synapse in neuron.axon: 
 					synapse.draw(win) 
-			# for neuron in organ.neurons: 
-			# 	p1 = neuron.body.getCenter() 
-			# 	for synapse in neuron.axon: 
-			# 		p2 = synapse.body.getCenter() 
-			# 		line = Line(p1,p2)
-			# 		line.setFill(color_rgb(200,200,200))
-			# 		line.draw(win) 
-			i += 1 
 
 		# drawing connections between transmitters and terminal neurons 
 		for transmitter in self.transmitters: 
 			for neuron in transmitter: 
 				for synapse in neuron.axon: 
 					synapse.draw(win) 
-				# p1 = neuron.body.getCenter() 
-				# for synapse in neuron.axon: 
-				# 	p2 = synapse.body.getCenter() 
-				# 	line = Line(p1,p2) 
-				# 	line.setFill(color_rgb(200,200,200)) 
-				# 	line.draw(win) 
 
 

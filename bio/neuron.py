@@ -72,27 +72,19 @@ class Neuron(object):
 
 	def send(self,out): 
 		self.lightup() 
-		i = 0 
 		for synapse in self.axon: 
 			if(synapse.neuron_to.process(out)==ERROR): 
 				synapse.erase() 
-				self.axon.remove(synapse) 
+				if(synapse in self.axon): 
+					self.axon.remove(synapse) 
 			else: 
 				synapse.reset() 
-			i += 1 
 		self.lightdown() 
 
 	def add_synapse(self,neuron): 
 		syn = Synapse(self,neuron) 
 		self.axon.append(syn) 
 		return syn 
-
-	# def live_synapses(self): 
-	# 	for synapse in self.axon: 
-	# 		synapse.neuron_to.live_synapses() 
-	# 		if(synapse.live()==ERROR): 
-	# 			synapse.erase() 
-	# 			self.axon.remove(synapse) 
 
 	# ======================== 
 	# graphic processes 
@@ -129,15 +121,12 @@ class Cone(Neuron):
 	def send(self,out): 
 		factor = 1.0/3.0
 		self.lightup() 
-		i = 0 
 		for synapse in self.axon: 
 			if(synapse.neuron_to.process(out*factor)==ERROR): 
 				synapse.erase() 
 				self.axon.remove(synapse) 
-				# self.axon.pop(i) 
 			else: 
 				synapse.reset() 
-			i += 1
 		self.lightdown() 
 
 	def lightup(self): 

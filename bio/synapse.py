@@ -36,4 +36,3 @@ class Synapse:
 		self.lifespan = SYNAPSE_LIFESPAN 
 		if(self.line!=None): 
 			self.line.setFill(color_rgb(200,200,200)) 
-		#self.line.setFill(color_rgb(200,200,200)) 

@@ -41,11 +41,6 @@ class Eye(Organ):
 			self.neurons.append(r) 
 			self.neurons.append(g) 
 			self.neurons.append(b) 
-		# self.cones = [] 
-		# self.neurons = self.cones 
-		# for i in range(neuron_number): 
-		# 	c = Cone() 
-		# 	self.cones.append(c) 
 
 	def add_synapse(self,neuron): 
 		for cone in self.neurons: 

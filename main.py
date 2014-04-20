@@ -43,14 +43,6 @@ def main():
 			for organ in n.organs: 
 				for neuron in organ.neurons: 
 					neuron.send(INTENSITY) 
-					# if(isinstance(neuron, Cone)): 
-					# 	r = random.randint(0,INTENSITY) 
-					# 	g = random.randint(0,INTENSITY) 
-					# 	b = random.randint(0,INTENSITY) 
-					# 	neuron.send(r,g,b) 
-					# else: 
-					# 	neuron.send(INTENSITY) 
-			print "living synapses" 
 			for synapse in n.synapses: 
 				if(synapse.live()==ERROR): 
 					n.synapses.remove(synapse) 

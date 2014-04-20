@@ -33,7 +33,6 @@ def was_click_perceived(network,x,y):
 
 			if(( nx-nr <= x <= nx+nr ) and ( ny-nr <= y <= ny+nr )): 
 				if(neuron.is_type(SENSORIAL)): 
-					# print "sensed"
 					neuron.process(INTENSITY) 
 					print "found" 
 					return True 
