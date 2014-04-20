@@ -49,4 +49,4 @@ class Eye(Organ):
 
 	def add_synapse(self,neuron): 
 		for cone in self.neurons: 
-			cone.add_synapse(neuron) 
+			return cone.add_synapse(neuron) 

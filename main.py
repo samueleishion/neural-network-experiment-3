@@ -50,6 +50,11 @@ def main():
 					# 	neuron.send(r,g,b) 
 					# else: 
 					# 	neuron.send(INTENSITY) 
+			print "living synapses" 
+			for synapse in n.synapses: 
+				if(synapse.live()==ERROR): 
+					n.synapses.remove(synapse) 
+
 		else: 
 			click = get_click() 
 			was_click_perceived(n,click[0],click[1]) 

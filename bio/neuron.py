@@ -18,8 +18,8 @@ class Neuron(object):
 	def __init__(self,neuron_type,weight,id_number = 0): 
 		self.type = neuron_type 
 		self.id = id_number 
-		self.th = 0.5 	# threshold 
-		self.lr = 0.2 	# learning rate 
+		self.th = THRESHOLD 	# threshold 
+		self.lr = LEARNING_RATE 	# learning rate 
 		self.w = weight # weight value axon
 		self.axon = [] # connection to other neurons 
 		self.sub = 0 	# subtotal value of sensor and weight 
@@ -63,7 +63,7 @@ class Neuron(object):
 				#self.send(out) 
 
 	def learn(self,error): 
-		correction = -self.lr/2 #self.lr if (error==1) else -self.lr/2 
+		correction = self.lr if (error==1) else -self.lr/2 
 		self.w += correction # correct weight value based on error 
 		if(self.w<=0.09):
 			print self.w 
@@ -77,12 +77,22 @@ class Neuron(object):
 			if(synapse.neuron_to.process(out)==ERROR): 
 				synapse.erase() 
 				self.axon.remove(synapse) 
+			else: 
+				synapse.reset() 
 			i += 1 
 		self.lightdown() 
 
 	def add_synapse(self,neuron): 
 		syn = Synapse(self,neuron) 
 		self.axon.append(syn) 
+		return syn 
+
+	# def live_synapses(self): 
+	# 	for synapse in self.axon: 
+	# 		synapse.neuron_to.live_synapses() 
+	# 		if(synapse.live()==ERROR): 
+	# 			synapse.erase() 
+	# 			self.axon.remove(synapse) 
 
 	# ======================== 
 	# graphic processes 
@@ -125,6 +135,8 @@ class Cone(Neuron):
 				synapse.erase() 
 				self.axon.remove(synapse) 
 				# self.axon.pop(i) 
+			else: 
+				synapse.reset() 
 			i += 1
 		self.lightdown() 
 

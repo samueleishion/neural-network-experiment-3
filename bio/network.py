@@ -11,6 +11,7 @@ class Network:
 		self.organs = [] 
 		self.transmitters = [] 
 		self.terminals = [] 
+		self.synapses = [] 
 
 		for i in range(TERMINAL_NEURONS): 
 			self.terminals.append(create_neuron(TERMINAL)) 
@@ -27,7 +28,7 @@ class Network:
 			for synapse in temp: 
 				rand = random.randint(0,5) 
 				if(rand==0): 
-					neuron.add_synapse(synapse) 
+					self.synapses.append(neuron.add_synapse(synapse)) 
 
 		# connecting transmitters with other transmitters  
 		for neuron in temp: 
@@ -38,14 +39,14 @@ class Network:
 				else: 
 					rand = random.randint(0,50) 
 				if(rand==0): 
-					neuron.add_synapse(other) 
+					self.synapses.append(neuron.add_synapse(other)) 
 
 		# conencting transmitters with terminals 
 		for neuron in temp: 
 			for terminal in self.terminals: 
 				rand = random.randint(0,7) 
 				if(rand==0): 
-					neuron.add_synapse(terminal) 
+					self.synapses.append(neuron.add_synapse(terminal)) 
 
 		# storing organ and transmitters on network 
 		self.organs.append(organ) 
