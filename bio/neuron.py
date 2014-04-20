@@ -1,9 +1,10 @@
 # Neural Network Model: 
-# 	http://end.wikipedia.org/wiki/Artificial_neuron#Spreadsheet_example 
+# 	http://en.wikipedia.org/wiki/Artificial_neuron#Spreadsheet_example 
 
 from pkg.graphics import * 
 from pkg.consts import * 
 from pkg.utils import * 
+from bio.synapse import * 
 from settings import * 
 from time import sleep 
 import random
@@ -52,29 +53,36 @@ class Neuron(object):
 					error = expected-out 
 					#if self.learn(error)==-1: 
 					#	return -1
-					self.learn(error) 
+					if(self.learn(error)==ERROR): 
+						return ERROR 
 					# sleep(0.05) 
 					self.send(out) 
 
-				self.learn(expected) 
+				if(self.learn(expected)==ERROR): 
+					return ERROR 
 				#self.send(out) 
 
 	def learn(self,error): 
-		correction = self.lr if (error==1) else -self.lr/2 
+		correction = -self.lr/2 #self.lr if (error==1) else -self.lr/2 
 		self.w += correction # correct weight value based on error 
 		if(self.w<=0.09):
 			print self.w 
-			return -1 
-		return 0 
+			return ERROR 
+		return SUCCESS 
 
 	def send(self,out): 
 		self.lightup() 
+		i = 0 
 		for synapse in self.axon: 
-			synapse.process(out) 
+			if(synapse.neuron_to.process(out)==ERROR): 
+				synapse.erase() 
+				self.axon.remove(synapse) 
+			i += 1 
 		self.lightdown() 
 
 	def add_synapse(self,neuron): 
-		self.axon.append(neuron) 
+		syn = Synapse(self,neuron) 
+		self.axon.append(syn) 
 
 	# ======================== 
 	# graphic processes 
@@ -111,8 +119,13 @@ class Cone(Neuron):
 	def send(self,out): 
 		factor = 1.0/3.0
 		self.lightup() 
+		i = 0 
 		for synapse in self.axon: 
-			synapse.process(out*factor) 
+			if(synapse.neuron_to.process(out*factor)==ERROR): 
+				synapse.erase() 
+				self.axon.remove(synapse) 
+				# self.axon.pop(i) 
+			i += 1
 		self.lightdown() 
 
 	def lightup(self): 

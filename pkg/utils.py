@@ -8,10 +8,12 @@ def flip(n):
 	return 1 if n==0 else 0 
 
 def create_neuron(neuron_type): 
+	global NEURON_COUNT 
+	NEURON_COUNT += 1
 	weight = 0 
 	while(weight==0 or weight==1):
 		weight = random.uniform(0.0,1.0) 
-	return Neuron(neuron_type,weight) 
+	return Neuron(neuron_type,weight,NEURON_COUNT) 
 
 def get_click(): 
 	click = win.getMouse() 
