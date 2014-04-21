@@ -19,7 +19,7 @@ class Synapse:
 		self.line.draw(win) 
 
 	def erase(self): 
-		print "erasing synapse between neurons "+str(self.neuron_from.id)+" and "+str(self.neuron_to.id)
+		# print "erasing synapse between neurons "+str(self.neuron_from.id)+" and "+str(self.neuron_to.id)
 		self.line.move(1000,1000) 
 
 	def live(self): 
@@ -42,7 +42,7 @@ class Synapse:
 
 	def lightup(self): 
 		if(self.line!=None): 
-			self.line.setFill(color_rgb(100,100,0)) 
+			self.line.setFill(color_rgb(150,150,0)) 
 
 	def lightdown(self): 
 		if(self.line!=None): 

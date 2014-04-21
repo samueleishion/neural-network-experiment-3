@@ -14,13 +14,13 @@ class Network:
 		self.synapses = [] 
 
 		for i in range(TERMINAL_NEURONS): 
-			self.terminals.append(create_neuron(TERMINAL)) 
+			self.terminals.append(create_neuron(TERMINAL,i)) 
 
 	def add_organ(self,organ):
 		# generate organ's neurons' transmitters 
 		temp = []
 		for i in range(SENSORY_NEURONS+TERMINAL_NEURONS): 
-			n = create_neuron(TRANSMITTER) 
+			n = create_neuron(TRANSMITTER,i) 
 			temp.append(n) 
 
 		# connecting organ's sensorial neurons with transmitters 

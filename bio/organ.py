@@ -9,8 +9,9 @@ class Organ:
 		self.neurons = []
 		for i in range(neuron_number):
 			rand = random.uniform(0.25,0.75) 
-			n = Neuron(SENSORIAL,rand,1) 
+			n = Neuron(SENSORIAL,rand,i) 
 			self.neurons.append(n) 
+
 
 	def draw(self,win,x,y): 
 		gap = NEURON_SIZE+2 

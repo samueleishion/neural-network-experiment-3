@@ -23,10 +23,10 @@ class Neuron(object):
 		self.w = weight # weight value axon
 		self.axon = [] # connection to other neurons 
 		self.sub = 0 	# subtotal value of sensor and weight 
-		self.hits = 0 
 		self.body = Circle(Point(0,0),NEURON_SIZE) 
 		self.x = 0 
 		self.y = 0 
+		self.r = None 
 
 	def is_type(self,neuron_type): 
 		return self.type==neuron_type 
@@ -38,7 +38,7 @@ class Neuron(object):
 		if(sensor>0): 
 			if(self.is_type(TERMINAL)): 
 				self.lightup() 
-				self.hits += 1 
+				self.r.hit(self.id) 
 				self.lightdown() 
 			else: 
 				expected = 1 if bool(sensor) else 0 # desired output 
@@ -51,8 +51,6 @@ class Neuron(object):
 					out = 1 
 					self.sub -= self.th 
 					error = expected-out 
-					#if self.learn(error)==-1: 
-					#	return -1
 					if(self.learn(error)==ERROR): 
 						return ERROR 
 					# sleep(0.05) 
@@ -66,7 +64,6 @@ class Neuron(object):
 		correction = self.lr if (error==1) else -self.lr/2 
 		self.w += correction # correct weight value based on error 
 		if(self.w<=0.09):
-			print self.w 
 			return ERROR 
 		return SUCCESS 
 
