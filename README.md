@@ -1,7 +1,7 @@
 Neural Network Experiment 2
 ===========================
 
-A visual representation of a simple neural network expanding on previous work done on https://github.com/samueleishion/neural-network-experiment
+A visual representation of a simple neural network expanding on previous work done on https://github.com/samueleishion/neural-network-experiment-2
 
 How to run it
 -------------
