@@ -9,6 +9,8 @@ How to run it
 make network 
 ```
 
+Please note this version of the experiment is designed for Python 2.* 
+
 To clean the project: 
 ``` 
 make clean
