@@ -1,4 +1,4 @@
-Neural Network Experiment 2
+Neural Network Experiment 3
 ===========================
 
 A visual representation of a simple neural network expanding on previous work done on https://github.com/samueleishion/neural-network-experiment-2
